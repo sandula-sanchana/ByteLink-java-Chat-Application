@@ -52,7 +52,10 @@ public class ClientUiController implements Initializable {
                 while (true) {
                     String msg = dis.readUTF();
                     appendMessage("Server: " + msg);
-                    if (msg.equalsIgnoreCase("exit")) break;
+                    if (msg.equalsIgnoreCase("exit")) {
+                        appendMessage("client disconnected.");
+                        break;
+                    }
                 }
             } catch (IOException e) {
                 appendMessage("Connection closed.");

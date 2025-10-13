@@ -35,7 +35,7 @@ public class ServerUiController implements Initializable {
             String msg = messageField.getText();
             dos.writeUTF(msg);
             dos.flush();
-            appendMessage("server: " + msg);
+            appendMessage("you: " + msg);
             messageField.clear();
         } catch (IOException e) {
             appendMessage("Error sending message.");
@@ -58,7 +58,11 @@ public class ServerUiController implements Initializable {
                 while (true) {
                     String msg = dis.readUTF();
                     appendMessage("Client: " + msg);
-                    if (msg.equalsIgnoreCase("exit")) break;
+                    if (msg.equalsIgnoreCase("exit"))
+                    {
+                        appendMessage("server disconnected.");
+                        break;
+                    }
                 }
             } catch (IOException e) {
                 appendMessage("Connection closed.");

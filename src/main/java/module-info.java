@@ -5,4 +5,12 @@ module edu.ijse.fxchatapplication {
 
     opens edu.ijse.fxchatapplication to javafx.fxml;
     exports edu.ijse.fxchatapplication;
+    exports  edu.ijse.fxchatapplication.controller;
+
+    requires javafx.graphics;
+    requires javafx.base;
+
+
+
+    opens  edu.ijse.fxchatapplication.controller to javafx.fxml;
 }
