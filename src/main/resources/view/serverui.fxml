@@ -7,14 +7,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="589.0" prefWidth="460.0" style="-fx-background-color: #222;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/24.0.1" fx:controller="edu.ijse.fxchatapplication.controller.ServerUiController">
+<AnchorPane prefHeight="589.0" prefWidth="460.0" style="-fx-background-color: #222; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.fxchatapplication.controller.ServerUiController">
     <VBox alignment="CENTER" layoutY="-83.0" prefHeight="573.0" prefWidth="380.0" spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10.0">
         <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Server Chat" />
-        <TextArea fx:id="chatArea" editable="false" prefHeight="350" wrapText="true" />
+        <TextArea fx:id="chatArea" editable="false" prefHeight="350" wrapText="true">
+         <font>
+            <Font size="19.0" />
+         </font></TextArea>
         <HBox spacing="10">
-            <TextField fx:id="messageField" prefHeight="43.0" prefWidth="381.0" promptText="Type message..." HBox.hgrow="ALWAYS" />
-            <Button onAction="#onSend" prefHeight="42.0" prefWidth="73.0" text="Send" />
+            <TextField fx:id="messageField" prefHeight="43.0" prefWidth="381.0" promptText="Type message..." style="-fx-background-color: #bdbdbd;" HBox.hgrow="ALWAYS" />
+            <Button onAction="#onSend" prefHeight="42.0" prefWidth="73.0" style="-fx-background-color: teal;" text="Send" />
         </HBox>
     </VBox>
 </AnchorPane>

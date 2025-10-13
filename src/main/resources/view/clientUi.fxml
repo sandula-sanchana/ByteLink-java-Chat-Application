@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.ijse.fxchatapplication.controller.ClientUiController"
-            prefWidth="400" prefHeight="500"
-            style="-fx-background-color: #222;">
-    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
-        <Label text="Client Chat" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
-        <TextArea fx:id="chatArea" editable="false" wrapText="true" prefHeight="350"/>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500" prefWidth="400" style="-fx-background-color: #222; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.fxchatapplication.controller.ClientUiController">
+    <VBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Client Chat" />
+        <TextArea fx:id="chatArea" editable="false" prefHeight="350" style="-fx-background-color: #e0e0e0;" wrapText="true">
+         <font>
+            <Font size="19.0" />
+         </font></TextArea>
         <HBox spacing="10">
-            <TextField fx:id="messageField" promptText="Type message..." HBox.hgrow="ALWAYS"/>
-            <Button text="Send" onAction="#onSend"/>
+            <TextField fx:id="messageField" promptText="Type message..." style="-fx-background-color: #90caf9;" HBox.hgrow="ALWAYS">
+            <font>
+               <Font name="Cousine Bold" size="18.0" />
+            </font></TextField>
+            <Button onAction="#onSend" prefHeight="37.0" prefWidth="49.0" style="-fx-background-color: teal;" text="Send" />
         </HBox>
     </VBox>
 </AnchorPane>
