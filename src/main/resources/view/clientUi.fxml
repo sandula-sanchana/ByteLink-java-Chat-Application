@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.ijse.fxchatapplication.controller.ClientUiController"
+            prefWidth="400" prefHeight="500"
+            style="-fx-background-color: #222;">
+    <VBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+        <Label text="Client Chat" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+        <TextArea fx:id="chatArea" editable="false" wrapText="true" prefHeight="350"/>
+        <HBox spacing="10">
+            <TextField fx:id="messageField" promptText="Type message..." HBox.hgrow="ALWAYS"/>
+            <Button text="Send" onAction="#onSend"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
