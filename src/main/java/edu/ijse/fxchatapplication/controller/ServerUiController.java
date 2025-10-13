@@ -1,22 +1,18 @@
 package edu.ijse.fxchatapplication.controller;
 
-import edu.ijse.fxchatapplication.util.AlertHelper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class ServerUiController implements Initializable {
     Socket localSocket;
@@ -60,7 +56,7 @@ public class ServerUiController implements Initializable {
                     appendMessage("Client: " + msg);
                     if (msg.equalsIgnoreCase("exit"))
                     {
-                        appendMessage("server disconnected.");
+                        appendMessage("client disconnected.");
                         break;
                     }
                 }
