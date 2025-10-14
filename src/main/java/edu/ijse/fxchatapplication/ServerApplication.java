@@ -13,7 +13,7 @@ public class ServerApplication extends Application {
        Parent parent = FXMLLoader.load(getClass().getResource("/view/serverui.fxml"));
        Scene scene = new Scene(parent);
        stage.setScene(scene);
-       stage.setTitle("Chat Application-server");
+       stage.setTitle("Chat Application-server interface");
        stage.show();
     }
 

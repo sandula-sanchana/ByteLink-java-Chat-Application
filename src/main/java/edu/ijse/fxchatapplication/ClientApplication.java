@@ -12,7 +12,7 @@ public class ClientApplication extends Application {
         Parent parent = FXMLLoader.load(getClass().getResource("/view/clientUi.fxml"));
         Scene scene = new Scene(parent);
         stage.setScene(scene);
-        stage.setTitle("Chat Application-client");
+        stage.setTitle("Chat Application-client interface");
         stage.show();
     }
 
