@@ -80,11 +80,10 @@ public class ClientUiController implements Initializable {
             ImageIO.write(image, "jpg", baos);
             byte[] imageBytes = baos.toByteArray();
 
-            // Send type header
+
             dos.writeUTF("IMAGE");
             dos.flush();
 
-            // Send image length and bytes
             dos.writeInt(imageBytes.length);
             dos.write(imageBytes);
             dos.flush();

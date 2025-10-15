@@ -5,7 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -15,9 +20,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ServerUiController implements Initializable {
+    public ImageView imageShower;
     Socket localSocket;
     private DataInputStream dis;
     private DataOutputStream  dos;
+
+    Image  image;
 
     @FXML
     private TextArea chatArea;
@@ -52,10 +60,10 @@ public class ServerUiController implements Initializable {
                 dos = new DataOutputStream(localSocket.getOutputStream());
 
                 while (true) {
-                    String type = dis.readUTF();  // Read the type first: "TEXT" or "IMAGE"
+                    String type = dis.readUTF();
 
                     if (type.equals("TEXT")) {
-                        String msg = dis.readUTF();  // Then read the actual message
+                        String msg = dis.readUTF();
                         appendMessage("Client: " + msg);
 
                         if (msg.equalsIgnoreCase("exit")) {
@@ -67,7 +75,12 @@ public class ServerUiController implements Initializable {
                         int length = dis.readInt();
                         byte[] imageBytes = new byte[length];
                         dis.readFully(imageBytes);
+                        javafx.scene.image.Image fxImage = new javafx.scene.image.Image(new ByteArrayInputStream(imageBytes));
 
+                        javafx.application.Platform.runLater(() -> {
+                            imageShower.setImage(fxImage);
+                            appendMessage("Image received and displayed.");
+                        });
                         saveImage(imageBytes);
                         appendMessage("Image received and saved.");
                     } else {
@@ -100,6 +113,7 @@ public class ServerUiController implements Initializable {
             System.err.println("Error saving image: " + e.getMessage());
         }
     }
+
 
 
 
