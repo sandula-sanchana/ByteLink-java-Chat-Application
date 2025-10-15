@@ -9,7 +9,7 @@ module edu.ijse.fxchatapplication {
 
     requires javafx.graphics;
     requires javafx.base;
-
+    requires java.desktop;
 
 
     opens  edu.ijse.fxchatapplication.controller to javafx.fxml;

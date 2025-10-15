@@ -52,14 +52,29 @@ public class ServerUiController implements Initializable {
                 dos = new DataOutputStream(localSocket.getOutputStream());
 
                 while (true) {
-                    String msg = dis.readUTF();
-                    appendMessage("Client: " + msg);
-                    if (msg.equalsIgnoreCase("exit"))
-                    {
-                        appendMessage("client disconnected.");
-                        break;
+                    String type = dis.readUTF();  // Read the type first: "TEXT" or "IMAGE"
+
+                    if (type.equals("TEXT")) {
+                        String msg = dis.readUTF();  // Then read the actual message
+                        appendMessage("Client: " + msg);
+
+                        if (msg.equalsIgnoreCase("exit")) {
+                            appendMessage("Client disconnected.");
+                            break;
+                        }
+
+                    } else if (type.equals("IMAGE")) {
+                        int length = dis.readInt();
+                        byte[] imageBytes = new byte[length];
+                        dis.readFully(imageBytes);
+
+                        saveImage(imageBytes);
+                        appendMessage("Image received and saved.");
+                    } else {
+                        appendMessage("Unknown message type received: " + type);
                     }
                 }
+
             } catch (IOException e) {
                 appendMessage("Connection closed.");
             }
@@ -69,6 +84,21 @@ public class ServerUiController implements Initializable {
 
     private void appendMessage(String msg) {
         javafx.application.Platform.runLater(() -> chatArea.appendText(msg + "\n"));
+    }
+
+    private void saveImage(byte[] imageBytes) {
+        try {
+            java.awt.image.BufferedImage image = javax.imageio.ImageIO.read(new java.io.ByteArrayInputStream(imageBytes));
+            if (image != null) {
+                String filename = "received_" + System.currentTimeMillis() + ".jpg";
+                javax.imageio.ImageIO.write(image, "jpg", new java.io.File(filename));
+                System.out.println("Image saved as: " + filename);
+            } else {
+                System.err.println("Failed to decode image data.");
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving image: " + e.getMessage());
+        }
     }
 
 

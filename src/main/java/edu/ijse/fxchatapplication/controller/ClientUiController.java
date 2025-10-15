@@ -4,7 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
 import java.net.URL;
@@ -26,8 +29,10 @@ public class ClientUiController implements Initializable {
     private void onSend() {
         try {
             String msg = messageField.getText();
+            dos.writeUTF("TEXT");
             dos.writeUTF(msg);
             dos.flush();
+
             appendMessage("You: " + msg);
             messageField.clear();
         } catch (IOException e) {
@@ -62,4 +67,44 @@ public class ClientUiController implements Initializable {
             }
         }).start();
     }
+
+    public void sendImage(File imageFile) {
+        try {
+            BufferedImage image = ImageIO.read(imageFile);
+            if (image == null) {
+                appendMessage("Invalid image file.");
+                return;
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", baos);
+            byte[] imageBytes = baos.toByteArray();
+
+            // Send type header
+            dos.writeUTF("IMAGE");
+            dos.flush();
+
+            // Send image length and bytes
+            dos.writeInt(imageBytes.length);
+            dos.write(imageBytes);
+            dos.flush();
+
+            appendMessage("You sent an image.");
+        } catch (IOException e) {
+            appendMessage("Error sending image: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void onSendImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            sendImage(selectedFile);
+        }
+    }
+
 }

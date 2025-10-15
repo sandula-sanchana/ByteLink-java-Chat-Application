@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500" prefWidth="400" style="-fx-background-color: #222; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.fxchatapplication.controller.ClientUiController">
-    <VBox alignment="CENTER" spacing="10" AnchorPane.bottomAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
-        <Label style="-fx-text-fill: white; -fx-font-size: 18px;" text="Client Chat" />
+<AnchorPane prefHeight="591.0" prefWidth="400" style="-fx-background-color: #222; -fx-background-radius: 15;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.ijse.fxchatapplication.controller.ClientUiController">
+    <VBox alignment="CENTER" prefHeight="486.0" prefWidth="380.0" spacing="10" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.topAnchor="10">
+        <Label alignment="TOP_LEFT" contentDisplay="TOP" style="-fx-text-fill: white; -fx-font-size: 18px;" text="Client Chat" />
         <TextArea fx:id="chatArea" editable="false" prefHeight="350" style="-fx-background-color: #e0e0e0;" wrapText="true">
          <font>
             <Font size="19.0" />
@@ -23,5 +23,6 @@
             </font></TextField>
             <Button onAction="#onSend" prefHeight="37.0" prefWidth="49.0" style="-fx-background-color: teal;" text="Send" />
         </HBox>
+      <Button mnemonicParsing="false" onAction="#onSendImage" text="add" />
     </VBox>
 </AnchorPane>
